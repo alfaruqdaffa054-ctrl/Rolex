@@ -1,18 +1,18 @@
 local Luna = loadstring(game:HttpGet("https://raw.nebulasoftworks.xyz/luna", true))()
 
 local Window = Luna:CreateWindow({
-    Name = "Rolex hub",
-    Subtitle = nil,
-    LogoID = "82795327169782",
+    Name = "Rolex Hub",
+    Subtitle = "",
+    LogoID = "rbxassetid://82795327169782",  -- Test this; replace if logo doesn't show
     LoadingEnabled = true,
     LoadingTitle = "Welcome",
-    LoadingSubtitle = "Script has load",
-
+    LoadingSubtitle = "Script Loaded Successfully",
+    
     ConfigSettings = {
         RootFolder = nil,
         ConfigFolder = "Big Hub"
     },
-
+    
     KeySystem = false
 })
 
@@ -26,15 +26,147 @@ local mainTab = Window:CreateTab({
 
 mainTab:CreateParagraph({
     Title = "by rana_GZ77 - ZREfisch - Nebula",
-    Text = "update logs\n- luna"
+    Text = "Update Logs\n- Using Luna UI Library"
 })
 
 mainTab:CreateButton({
-    Name = "Rejoin",
+    Name = "Rejoin Server",
     Callback = function()
         game:GetService("TeleportService"):Teleport(game.PlaceId)
     end
 })
+
+-- SCRIPT HUB
+local scriptTab = Window:CreateTab({
+    Name = "Script Hub",
+    Icon = "laptop",
+    ImageSource = "Material",
+    ShowTitle = true
+})
+
+scriptTab:CreateSection("Script List")
+
+local scriptList = {
+    {name="Speed Hub X",          url="https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", status="Key System"},
+    {name="Chiyo Hub",            url="https://raw.githubusercontent.com/kaisenlmao/loader/refs/heads/main/chiyo.lua", status="Key System"},
+    {name="Lightningware v2",     url="https://api.luarmor.net/files/v3/loaders/f3ed0bc1276c97a6404b78a360196d2d.lua", status="Keyless (Evade)"},
+    {name="Chloe x Hub",          url="https://raw.githubusercontent.com/MajestySkie/Chloe-X/main/Main/ChloeX", status="Keyless (Fish It)"},
+    {name="Vinz Hub",             url="https://script.vinzhub.com/loader", status="Keyless (may redirect)"},
+    {name="Ronix Hub",            url="https://api.luarmor.net/files/v3/loaders/fda9babd071d6b536a745774b6bc681c.lua", status="Key System"},
+    {name="XVC Hub",              url="https://rayfield.xvchubontop.workers.dev/", status="Keyless"},
+    {name="Solara Hub",           url="https://raw.githubusercontent.com/samuraa1/Solara-Hub/refs/heads/main/SH.lua", status="Key System"},
+    {name="Dragonic Hub X",       url="https://raw.githubusercontent.com/Unknownproooolucky/Draconic-Hub-X/refs/heads/main/files/Evade/Overhaul.lua", status="Key System (Evade)"},
+    {name="Lunor",                url="https://lunor.dev/loader", status="Key System"},
+    {name="Lumin",                url="http://luminon.top/loader.lua", status="Key System"},
+    {name="Solix Hub",            url="https://raw.githubusercontent.com/meobeo8/a/a/a", status="Key System"},
+    {name="Meng Hub",             url="https://raw.githubusercontent.com/GrexXMeng/Mengs/refs/heads/main/library", status="Keyless"},
+    {name="Catraz Hub",           url="https://raw.githubusercontent.com/nurvian/Catraz-HUB/refs/heads/main/Catraz/main.lua", status="Key System"},
+    {name="Hoho Hub",             url="https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI", status="Key System"},
+    {name="Gravity Hub",          url="https://raw.githubusercontent.com/Dev-GravityHub/BloxFruit/refs/heads/main/Main.lua", status="Keyless"}
+}
+
+for _, v in ipairs(scriptList) do
+    scriptTab:CreateButton({
+        Name = v.name .. " (" .. v.status .. ")",
+        Description = "Load " .. v.name,
+        Callback = function()
+            local success, err = pcall(function()
+                loadstring(game:HttpGet(v.url, true))()
+            end)
+            if not success then
+                Luna:Notify({
+                    Title = "Load Failed",
+                    Content = "Could not load " .. v.name .. "\nError: " .. tostring(err),
+                    Duration = 6
+                })
+            end
+        end
+    })
+end
+
+-- ADMIN TAB
+local adminTab = Window:CreateTab({
+    Name = "Admin Scripts",
+    Icon = "laptop",
+    ImageSource = "Material",
+    ShowTitle = true
+})
+
+local adminList = {
+    {name="Infinite Yield", url="https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source", status="Keyless"},
+    {name="Nameless Admin", url="https://raw.githubusercontent.com/ltseverydayyou/Nameless-Admin/main/Source.lua", status="Keyless"},
+    {name="AK Admin",       url="https://absent.wtf/AKADMIN.lua", status="Key System"},
+    {name="Cat V5",         url="https://raw.githubusercontent.com/new-qwertyui/CatV5/main/init.lua", status="Keyless"},
+    {name="Dex Explorer",   url="https://raw.githubusercontent.com/infyiff/backup/main/dex.lua", status="Keyless"}
+}
+
+for _, v in ipairs(adminList) do
+    adminTab:CreateButton({
+        Name = v.name .. " (" .. v.status .. ")",
+        Callback = function()
+            local success, err = pcall(function()
+                loadstring(game:HttpGet(v.url, true))()
+            end)
+            if not success then
+                Luna:Notify({
+                    Title = "Error",
+                    Content = "Failed to load " .. v.name .. "\n" .. tostring(err),
+                    Duration = 5
+                })
+            end
+        end
+    })
+end
+
+-- MY SCRIPT TAB
+local myTab = Window:CreateTab({
+    Name = "My Scripts",
+    Icon = "code",
+    ImageSource = "Material",
+    ShowTitle = true
+})
+
+local myScripts = {
+    {name="Saturn Ring", url="https://pastebin.com/raw/a1Vvhd8Y", status="Keyless"}
+}
+
+for _, v in ipairs(myScripts) do
+    myTab:CreateButton({
+        Name = v.name .. " (" .. v.status .. ")",
+        Callback = function()
+            Luna:Destroy()
+            task.wait(0.2)  -- Small delay to fully clear old UI
+            local success, err = pcall(function()
+                loadstring(game:HttpGet(v.url, true))()
+            end)
+            if not success then
+                warn("Failed to load My Script: " .. tostring(err))
+            end
+        end
+    })
+end
+
+-- SETTINGS TAB
+local settingsTab = Window:CreateTab({
+    Name = "Settings",
+    Icon = "settings",
+    ImageSource = "Material",
+    ShowTitle = true
+})
+
+settingsTab:CreateButton({
+    Name = "Destroy UI",
+    Callback = function()
+        Luna:Destroy()
+    end
+})
+
+-- Welcome Notification
+Luna:Notify({
+    Title = "Rolex Hub Loaded 😂",
+    Content = "Enjoy the hub! (Solara, Solix, AK Admin included this time)",
+    Duration = 5
+})})
 
 -- SCRIPT HUB
 local scriptTab = Window:CreateTab({
