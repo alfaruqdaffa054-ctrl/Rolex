@@ -28,7 +28,7 @@ end
 if isfile and isfile(KeyFile) then
 	local savedKey = readfile(KeyFile)
 	if isValidKey(savedKey) then
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/alfaruqdaffa054-ctrl/Rolex-hub-x/refs/heads/main/rolex%20hub"))()
+		loadstring(game:HttpGet("https://pastebin.com/raw/vnye62r5"))()
 		return
 	end
 end
@@ -194,7 +194,7 @@ check.MouseButton1Click:Connect(function()
 		task.wait(.5)
 		gui:Destroy()
 
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/alfaruqdaffa054-ctrl/Rolex-hub-x/refs/heads/main/rolex%20hub"))()
+		loadstring(game:HttpGet("https://pastebin.com/raw/vnye62r5"))()
 
 	else
 
